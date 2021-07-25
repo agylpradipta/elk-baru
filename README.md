@@ -1,4 +1,8 @@
-Cara menjalankan:
+# Centralize Kubernetes Logging
+
+Menggunakan Elasticsearch, Filebeat, Metricbeat, dan Kibana
+
+### Cara menjalankan:
 1. kubectl apply -f persistance-volume.yaml
 2. kubectl apply -f elk-state.yaml
 3. kubectl apply -f kibana.yaml
