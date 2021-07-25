@@ -9,8 +9,7 @@ metadata:
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: elasticsearch-data1
-  namespace: kube-logging
+  name: elasticsearch-data
   labels:
     type: local
 spec:
@@ -20,14 +19,13 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/usr/share/elasticsearch/data"
 ---
 
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: elasticsearch-data2
-  namespace: kube-logging
   labels:
     type: local
 spec:
@@ -37,4 +35,4 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/mnt/data"
+    path: "/usr/share/elasticsearch/data"

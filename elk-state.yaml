@@ -45,9 +45,9 @@ spec:
         image: docker.elastic.co/elasticsearch/elasticsearch:7.11.2
         resources:
             limits:
-              cpu: 350m
+              cpu: 600m
             requests:
-              cpu: 45m
+              cpu: 55m
         ports:
         - containerPort: 9200
           name: rest
@@ -57,7 +57,7 @@ spec:
           protocol: TCP
         volumeMounts:
         - name: data
-          mountPath: /mnt/data
+          mountPath: /usr/share/elasticsearch/data
         env:
           - name: cluster.name
             value: k8s-logs
@@ -74,12 +74,12 @@ spec:
       initContainers:
       - name: fix-permissions
         image: busybox
-        command: ["sh", "-c", "chown -R 1000:1000 /mnt/data"]
+        command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
         securityContext:
           privileged: true
         volumeMounts:
         - name: data
-          mountPath: /mnt/data
+          mountPath: /usr/share/elasticsearch/data
       - name: increase-vm-max-map
         image: busybox
         command: ["sysctl", "-w", "vm.max_map_count=262144"]
@@ -100,4 +100,4 @@ spec:
       storageClassName: standard
       resources:
         requests:
-          storage: 2Gi
+          storage: 3Gi
